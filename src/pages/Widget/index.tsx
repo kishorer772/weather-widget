@@ -46,9 +46,7 @@ export default function WidgetApp() {
               }}
             >
               <Switch onChange={handleTemperature} value={temperature} />
-              {
-                <Typography>{temperature ? 'Celsius' : 'Farenheit'}</Typography>
-              }{' '}
+              {<Typography>{temperature ? 'Celsius' : 'Farenheit'}</Typography>}
             </Box>
             <Button
               sx={{ textTransform: 'none', justifySelf: 'end' }}

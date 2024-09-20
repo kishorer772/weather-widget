@@ -2,7 +2,7 @@ import { useContext, useMemo } from 'react';
 import { useMobile } from '../../../hooks/useMobile';
 import { LocationProps } from '../../../types/temperture';
 import { CityListProvider, WeatherProvider } from '../../../App';
-import { Box, Grid2, IconButton } from '@mui/material';
+import { Box, Grid2, IconButton, Typography } from '@mui/material';
 import { WeatherCard } from './WeatherCard';
 import { Icons } from '../../../assets/icons/TemperatureIcons';
 import { Delete } from '@mui/icons-material';
@@ -66,7 +66,9 @@ export const LocationList = ({ list }: { list: LocationProps[] }) => {
           ))}
         </Grid2>
       ) : (
-        <p>No City Found</p>
+        <Typography textAlign={'center'} fontWeight={'semi-bold'}>
+          No City Found
+        </Typography>
       )}
     </div>
   );

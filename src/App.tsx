@@ -11,7 +11,7 @@ export const WeatherProvider = createContext<{
 export const CityListProvider = createContext<{
   list: LocationProps[];
   handleAddCity: (value: string) => void;
-  handleRemoveCity: (value: string) => void;
+  handleRemoveCity: (value: string | []) => void;
 }>({
   list: [],
   handleAddCity: () => {},
@@ -29,12 +29,17 @@ function App() {
     const index = locations.findIndex((location) => location.name === value);
     setCityList((prev) => [...prev, locations[index]]);
   };
-  const handleRemoveCity = (value: string) => {
-    setCityList((prev) => {
-      const result = prev.filter((location) => location.name !== value);
-      localStorage.locations = JSON.stringify(result);
-      return result;
-    });
+  const handleRemoveCity = (value: string | []) => {
+    if (typeof value === 'object') {
+      localStorage.locations = JSON.stringify([]);
+      setCityList([]);
+    } else {
+      setCityList((prev) => {
+        const result = prev.filter((location) => location.name !== value);
+        localStorage.locations = JSON.stringify(result);
+        return result;
+      });
+    }
   };
   return (
     <>

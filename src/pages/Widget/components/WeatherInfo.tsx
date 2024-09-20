@@ -57,8 +57,10 @@ export const WeatherInfo = ({ clickHandler }: { clickHandler: () => void }) => {
             multiple
             value={[...addedLocation]}
             onChange={(_, value) => {
+              console.log('WeatherInfo ~ value:', value);
+              if (value.length === 0) return handleRemoveCity([]);
               const city = value.slice(-1)[0];
-              if (city === undefined) return;
+              if (city === undefined) return handleRemoveCity([]);
               if (!addedLocation.has(city)) {
                 addedLocation.add(city);
                 handleAddCity(city);
